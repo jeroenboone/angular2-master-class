@@ -4,13 +4,32 @@ import { MaterialModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { ContactsAppComponent } from './contacts.component';
+import {ContactsService} from "./contacts.service";
+import { ContactsListComponent } from './contacts-list/contacts-list.component';
+import {RouterModule} from "@angular/router";
+import {APP_ROUTES} from "./app.routes";
+import { ContactsDetailComponent } from './contacts-detail/contacts-detail.component';
+import {HttpModule} from "@angular/http";
+import {OpaqueToken} from "@angular/core";
+import { ContactsEditorComponent } from './contacts-editor/contacts-editor.component';
+import {FormsModule} from "@angular/forms";
+import {Observable} from "rxjs";
+
+const API_RESTEINDPOINTn = new OpaqueToken('apiEndpoint')
 
 @NgModule({
-  declarations: [ContactsAppComponent],
+  declarations: [ContactsAppComponent, ContactsListComponent, ContactsDetailComponent, ContactsEditorComponent],
   imports: [
     BrowserModule,
     MaterialModule.forRoot(),
-    FlexLayoutModule.forRoot()
+    FlexLayoutModule.forRoot(),
+    RouterModule.forRoot(APP_ROUTES),
+    HttpModule,
+    FormsModule
+  ],
+  providers: [
+    ContactsService,
+    {provide: 'API_RESTEINDPOINT', useValue: 'http://localhost:4201/api'}
   ],
   bootstrap: [ContactsAppComponent]
 })
