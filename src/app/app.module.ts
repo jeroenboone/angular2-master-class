@@ -15,11 +15,13 @@ import { ContactsEditorComponent } from './contacts-editor/contacts-editor.compo
 import {FormsModule} from "@angular/forms";
 import {Observable} from "rxjs";
 import { ContactsDetailViewComponent } from './contacts-detail-view/contacts-detail-view.component';
+import { TabsComponent } from './tabs/tabs/tabs.component';
+import { TabComponent } from './tabs/tab/tab.component';
 
 const API_RESTEINDPOINTn = new OpaqueToken('apiEndpoint')
 
 @NgModule({
-  declarations: [ContactsAppComponent, ContactsListComponent, ContactsDetailComponent, ContactsEditorComponent, ContactsDetailViewComponent],
+  declarations: [ContactsAppComponent, ContactsListComponent, ContactsDetailComponent, ContactsEditorComponent, ContactsDetailViewComponent, TabsComponent, TabComponent],
   imports: [
     BrowserModule,
     MaterialModule.forRoot(),
