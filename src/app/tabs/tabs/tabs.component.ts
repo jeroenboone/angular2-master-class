@@ -1,13 +1,17 @@
 import {Component, OnInit} from '@angular/core';
 import {TabComponent} from "../tab/tab.component";
+import {ContentChildren} from "@angular/core";
+import {QueryList, AfterContentInit } from "@angular/core";
 
 @Component({
   selector: 'trm-tabs',
   templateUrl: './tabs.component.html',
   styleUrls: ['./tabs.component.css']
 })
-export class TabsComponent implements OnInit {
-  private tabs: Array<TabComponent> = [];
+export class TabsComponent implements AfterContentInit  {
+
+  @ContentChildren(TabComponent)
+  tabs: QueryList<TabComponent>;
 
   constructor() {
   }
@@ -15,16 +19,23 @@ export class TabsComponent implements OnInit {
   ngOnInit() {
   }
 
-  addTab(tab: TabComponent) {
-    if (this.tabs.length == 0) {
-      this.select(tab);
+  ngAfterContentInit() {
+    // get all active tabs
+    let activeTabs = this.tabs.filter((tab)=>tab.selected);
+
+    // if there is no active tab set, activate the first
+    if(activeTabs.length === 0) {
+      this.select(this.tabs.first);
     }
-    this.tabs.push(tab);
   }
 
-  select(aTab: TabComponent) {
-    this.tabs.forEach(tab => tab.selected = false);
-    aTab.selected = true;
+  select(tab: TabComponent){
+    // deactivate all tabs
+    this.tabs.toArray().forEach(tab => tab.selected = false);
+
+    // activate the tab the user has clicked on.
+    tab.selected = true;
   }
+
 
 }

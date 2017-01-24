@@ -7,24 +7,9 @@ import {TabsComponent} from "../tabs/tabs.component";
   templateUrl: './tab.component.html',
   styleUrls: ['./tab.component.css']
 })
-export class TabComponent implements OnInit {
+export class TabComponent {
   @Input() selected: boolean = false;
   @Input() title: String = '';
 
 
-  constructor(
-    private tabs: TabsComponent
-  ) { }
-
-  ngOnInit() {
-    this.tabs.addTab(this);
-  }
-
-  selecteTab() {
-    this.selected = true;
-  }
-
-  deSelecteTab() {
-    this.selected = false;
-  }
 }
