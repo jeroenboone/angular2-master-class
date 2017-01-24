@@ -28,3 +28,39 @@ Then open up your browser at `http://localhost:4200`
 Have fun and good luck!
 
 Christoph & Pascal & Thomas
+
+
+
+## EXTRA NOTES JEROEN BOONE
+
+to investigate: 
+
+	* https://blog.thoughtram.io/angular/2015/06/29/shadow-dom-strategies-in-angular2.html:
+	* shadow dom
+	* html templates
+	* html injection
+	* webcomponents.org
+	* http://stackoverflow.com/questions/6003819/properties-and-attributes-in-html
+	* terminal tmux
+
+
+Angular writes to properties
+
+	* attribute: ?is the visual in the dom? always strings
+	* properties: ?the javascript value?
+
+
+forkjoin: http://classroom.thoughtram.io/#/class/angular2-master-class/observables/87 <br>
+You only get notified when all the observables are complete and you get the last result of each observable
+
+@Output()
+Is an observable
+
+Create Component
+ng g c contacts-detail-view
+
+Create Service
+ng generate service contacts
+
+
+
