@@ -4,6 +4,7 @@ import {Http} from "@angular/http";
 import 'rxjs/add/operator/map';
 import {Inject} from "@angular/core";
 import {Contact} from "./models/contact";
+import {Subject} from "rxjs";
 
 @Injectable()
 export class ContactsService {
@@ -32,7 +33,14 @@ export class ContactsService {
     return this.http.put(url, contact);
   }
 
-  search(term: string){
+  search(terms$: Subject<string>){
+    return terms$
+      .debounceTime(400)
+      .distinctUntilChanged()
+      .switchMap(term =>this.rawSearch(term))
+  }
+
+  rawSearch(term: string){
     return this.http.get(this.API_RESTEINDPOINT + '/search?text=' + term)
       .map((res) => { return res.json(); })
       .map((data) => { return data.items; });
