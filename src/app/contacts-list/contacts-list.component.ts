@@ -6,6 +6,7 @@ import {Observable} from "rxjs/Observable";
 import {Subject} from "rxjs";
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/merge'
+import {EventBusServiceService} from "../event-bus-service.service";
 
 @Component({
   selector: 'trm-contacts-list',
@@ -17,7 +18,10 @@ export class ContactsListComponent implements OnInit {
   private terms$ = new Subject<string>();
 
   // contacts: Array<Contact>;
-  constructor(private contactsService: ContactsService) {
+  constructor(
+    private contactsService: ContactsService,
+    private eventBusServiceService: EventBusServiceService
+  ) {
   }
 
 
@@ -26,7 +30,9 @@ export class ContactsListComponent implements OnInit {
     this.contacts = this.contactsService.getContacts()
       // .delay(5000)
       .takeUntil(search)
-      .merge(search)
+      .merge(search);
+
+    this.eventBusServiceService.emit( 'appTitleChange','contact');
   }
 
 }

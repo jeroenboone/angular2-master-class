@@ -17,6 +17,7 @@ import {Observable} from "rxjs";
 import { ContactsDetailViewComponent } from './contacts-detail-view/contacts-detail-view.component';
 import { TabsComponent } from './tabs/tabs/tabs.component';
 import { TabComponent } from './tabs/tab/tab.component';
+import {EventBusServiceService} from "./event-bus-service.service";
 
 const API_RESTEINDPOINTn = new OpaqueToken('apiEndpoint')
 
@@ -32,6 +33,7 @@ const API_RESTEINDPOINTn = new OpaqueToken('apiEndpoint')
   ],
   providers: [
     ContactsService,
+    EventBusServiceService,
     {provide: 'API_RESTEINDPOINT', useValue: 'http://localhost:4201/api'}
   ],
   bootstrap: [ContactsAppComponent]

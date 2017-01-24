@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {Contact} from './models/contact';
 import {ContactsService} from "./contacts.service";
+import {EventBusServiceService} from "./event-bus-service.service";
 
 @Component({
   selector: 'trm-contacts-app',
@@ -8,36 +9,22 @@ import {ContactsService} from "./contacts.service";
   styleUrls: ['./contacts.component.scss']
 })
 export class ContactsAppComponent {
+  title: string = '';
 
-  // contact: Contact = {
-  //   id: 6,
-  //   name: 'Diana Ellis',
-  //   email: '',
-  //   phone: '',
-  //   birthday: '',
-  //   website: '',
-  //   image: '/assets/images/6.jpg',
-  //   address: {
-  //     street: '6554 park lane',
-  //     zip: '43378',
-  //     city: 'Rush',
-  //     country: 'United States'
-  //   }
-  // };
 
-  // contacts = CONTACT_DATA;
+  constructor(
+    private eventBusServiceService: EventBusServiceService
+  ) {
+  }
 
-  // trackByContacts(index: number, aContact: Contact) {
-  //   return aContact.id;
-  // }
+  ngOnInit () {
+    this.eventBusServiceService.observe('appTitleChange')
+      .subscribe(title => this.setTitle(title));
+  }
 
-  // contacts: Array<Contact>;
-  // constructor(private contactsService: ContactsService) {
-  // }
-  //
-  //
-  // ngOnInit() {
-  //   this.contacts = this.contactsService.getContacts();
-  // }
+  private setTitle(title: string) {
+    return this.title = title;
+  }
+
 
 }

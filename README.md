@@ -62,5 +62,6 @@ ng g c contacts-detail-view
 Create Service
 ng generate service contacts
 
+Cold vs Hot Observables: https://blog.thoughtram.io/angular/2016/06/16/cold-vs-hot-observables.html
 
 
