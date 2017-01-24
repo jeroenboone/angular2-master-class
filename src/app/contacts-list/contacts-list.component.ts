@@ -5,6 +5,7 @@ import {ContactsService} from "../contacts.service";
 import {Observable} from "rxjs/Observable";
 import {Subject} from "rxjs";
 import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/merge'
 
 @Component({
   selector: 'trm-contacts-list',
@@ -21,17 +22,17 @@ export class ContactsListComponent implements OnInit {
 
 
   ngOnInit() {
-    this.contacts = this.contactsService.getContacts();
-    // this.contactsService.getContacts()
-    //   .subscribe(contacts => this.contacts = contacts);
-    this.terms$
-      .debounceTime(400)
-      .distinctUntilChanged()
-      .subscribe(term => this.search(term));
+    // this.contacts = this.contactsService.getContacts();
+    this.contacts =  this.terms$
+      .debounceTime(400)                                    // Observable<String>
+      .distinctUntilChanged()                               // Observable<String>
+      .switchMap(term =>this.contactsService.search(term))  // Observable<Array<<Contact>>
+      .merge(this.contactsService.getContacts())            // Observable<Array<<Contact>>
+    ;
   }
 
-  search(term: string) {
-    this.contacts = this.contactsService.search(term);
-  }
+  // search(term: string) {
+  //   this.contacts = this.contactsService.search(term);
+  // }
 
 }
