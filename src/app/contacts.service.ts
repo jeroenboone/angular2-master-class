@@ -32,4 +32,10 @@ export class ContactsService {
     return this.http.put(url, contact);
   }
 
+  search(term: string){
+    return this.http.get(this.API_RESTEINDPOINT + '/search?text=' + term)
+      .map((res) => { return res.json(); })
+      .map((data) => { return data.items; });
+  }
+
 }
