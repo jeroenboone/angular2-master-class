@@ -14,11 +14,12 @@ import {OpaqueToken} from "@angular/core";
 import { ContactsEditorComponent } from './contacts-editor/contacts-editor.component';
 import {FormsModule} from "@angular/forms";
 import {Observable} from "rxjs";
+import { ContactsDetailViewComponent } from './contacts-detail-view/contacts-detail-view.component';
 
 const API_RESTEINDPOINTn = new OpaqueToken('apiEndpoint')
 
 @NgModule({
-  declarations: [ContactsAppComponent, ContactsListComponent, ContactsDetailComponent, ContactsEditorComponent],
+  declarations: [ContactsAppComponent, ContactsListComponent, ContactsDetailComponent, ContactsEditorComponent, ContactsDetailViewComponent],
   imports: [
     BrowserModule,
     MaterialModule.forRoot(),
