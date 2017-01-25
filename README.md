@@ -33,6 +33,8 @@ Christoph & Pascal & Thomas
 
 ## EXTRA NOTES JEROEN BOONE
 
+Start Extra rest api for this solution: npm run rest-api
+
 Class source:
 * https://thoughtram.io/prepare-for-your-training.html
 * https://gitter.im/thoughtram/cegeka
